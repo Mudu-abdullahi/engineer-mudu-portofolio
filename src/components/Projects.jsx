@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import {
@@ -33,7 +32,7 @@ const projects = [
     image: '/images/projects/xaaji-electronics.png',
     imageAlt: 'Xaaji Electronics project screenshot',
     repository: '',
-    demo: '',
+    demo: 'https://xaaji-electronics.onrender.com',
     icon: Zap,
     accent: 'amber',
   },
@@ -112,7 +111,7 @@ function ProjectImage({ src, alt, title, darkMode }) {
           src={src}
           alt={alt}
           loading="lazy"
-          className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+          className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.06]" 
           onError={() => setImageFailed(true)}
         />
       ) : (
@@ -147,10 +146,10 @@ function ProjectCard({ project, index, reduceMotion, darkMode }) {
         duration: reduceMotion ? 0 : 0.45,
         delay: reduceMotion ? 0 : index * 0.08,
       }}
-      className={`group flex h-full flex-col overflow-hidden rounded-3xl border shadow-xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl ${
+      className={`group flex h-full flex-col overflow-hidden rounded-3xl border shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
         darkMode
-          ? 'border-white/10 bg-slate-900/80 shadow-black/10 hover:shadow-black/20'
-          : 'border-slate-200 bg-white shadow-slate-200/70 hover:shadow-slate-300/50'
+          ? 'border-white/10 bg-slate-900/70 shadow-black/20 hover:border-indigo-400/35 hover:shadow-indigo-950/40'
+          : 'border-slate-200 bg-white shadow-slate-200/70 hover:border-indigo-300 hover:shadow-indigo-200/40'
       } ${accent.glow}`}
     >
       <div className="relative">
@@ -226,7 +225,7 @@ function ProjectCard({ project, index, reduceMotion, darkMode }) {
           {project.technologies.map((technology) => (
             <span
               key={technology}
-              className={`rounded-lg border px-2.5 py-1.5 text-xs font-medium ${
+              className={`rounded-lg border px-2.5 py-1.5 text-xs font-medium transition-colors duration-200 hover:border-indigo-400/50 hover:text-indigo-400 ${
                 darkMode
                   ? 'border-white/10 bg-white/[0.04] text-slate-300'
                   : 'border-slate-200 bg-slate-50 text-slate-700'
@@ -247,11 +246,11 @@ function ProjectCard({ project, index, reduceMotion, darkMode }) {
               href={project.repository}
               target="_blank"
               rel="noreferrer"
-              className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition ${
+              className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold shadow-sm transition-all duration-300 hover:-translate-y-0.5 ${
                 darkMode
-                  ? 'bg-white text-slate-950 hover:bg-blue-100'
-                  : 'bg-slate-900 text-white hover:bg-blue-700'
-              }`}
+                  ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-indigo-950/30 hover:from-violet-500 hover:to-blue-600 hover:shadow-lg hover:shadow-indigo-500/20'
+                  : 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white hover:from-indigo-500 hover:to-blue-500 hover:shadow-lg hover:shadow-indigo-500/20'
+              }`} 
             >
               <Code2 size={16} />
               View Code
@@ -275,10 +274,10 @@ function ProjectCard({ project, index, reduceMotion, darkMode }) {
               href={project.demo}
               target="_blank"
               rel="noreferrer"
-              className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold transition ${
+              className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 ${
                 darkMode
-                  ? 'border-white/10 text-slate-200 hover:border-blue-400/40 hover:text-blue-200'
-                  : 'border-slate-300 text-slate-700 hover:border-blue-400 hover:text-blue-700'
+                  ? 'border-white/10 text-slate-200 hover:border-indigo-400/50 hover:bg-indigo-500/10 hover:text-indigo-200'
+                  : 'border-slate-300 text-slate-700 hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700'
               }`}
             >
               <ExternalLink size={15} />
@@ -315,13 +314,13 @@ export default function Projects() {
     <section
       id="projects"
       className={`relative overflow-hidden px-5 py-20 transition-colors duration-300 sm:px-8 sm:py-24 lg:py-28 ${
-        darkMode ? 'bg-slate-950 text-white' : 'bg-slate-50 text-slate-900'
+        darkMode ? 'bg-[#09090f] text-white' : 'bg-slate-50 text-slate-900'
       }`}
     >
       <div
         aria-hidden="true"
         className={`pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full blur-[120px] ${
-          darkMode ? 'bg-blue-600/10' : 'bg-blue-400/10'
+          darkMode ? 'bg-indigo-600/10' : 'bg-blue-400/10'
         }`}
       />
 
@@ -336,8 +335,8 @@ export default function Projects() {
           <span
             className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] ${
               darkMode
-                ? 'border-blue-400/20 bg-blue-400/10 text-blue-200'
-                : 'border-blue-200 bg-blue-50 text-blue-800'
+                ? 'border-indigo-400/20 bg-indigo-400/10 text-indigo-200'
+                : 'border-indigo-200 bg-indigo-50 text-indigo-800'
             }`}
           >
             <Code2 size={15} />
@@ -350,7 +349,7 @@ export default function Projects() {
             }`}
           >
             Projects built through
-            <span className="block bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent dark:from-blue-300 dark:to-indigo-400">
+            <span className="block bg-gradient-to-r from-violet-500 via-indigo-500 to-cyan-400 bg-clip-text text-transparent dark:from-violet-400 dark:via-indigo-400 dark:to-cyan-300" >
               learning and practice.
             </span>
           </h2>
@@ -407,7 +406,7 @@ export default function Projects() {
             href="https://github.com/Mudu-abdullahi"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-blue-500"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:from-violet-500 hover:to-blue-500 hover:shadow-indigo-500/30" 
           >
             <Code2 size={17} />
             Visit GitHub

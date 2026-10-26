@@ -326,7 +326,7 @@ export default function Contact() {
                     required
                     maxLength={254}
                     autoComplete="email"
-                    placeholder="you@example.com"
+                    placeholder="moxamudabdullahi2004@gmail.com"
                     className={inputClassName}
                   />
                 </div>

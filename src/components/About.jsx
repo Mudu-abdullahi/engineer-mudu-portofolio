@@ -1,4 +1,3 @@
-
 import { motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
@@ -70,11 +69,11 @@ export default function About() {
   }, [])
 
   const colors = {
-    section: darkMode ? 'bg-slate-950' : 'bg-slate-50',
+    section: darkMode ? 'bg-[#09090f]' : 'bg-slate-50',
     heading: darkMode ? 'text-white' : 'text-slate-950',
     paragraph: darkMode ? 'text-slate-300' : 'text-slate-600',
     card: darkMode
-      ? 'border-slate-800 bg-slate-900'
+      ? 'border-white/10 bg-slate-900/65 backdrop-blur-xl'
       : 'border-slate-200 bg-white',
     cardHeading: darkMode ? 'text-white' : 'text-slate-900',
     label: darkMode ? 'text-slate-400' : 'text-slate-400',
@@ -100,8 +99,14 @@ export default function About() {
     >
       <div
         aria-hidden="true"
-        className={`pointer-events-none absolute -left-40 top-20 h-80 w-80 rounded-full blur-3xl ${
-          darkMode ? 'bg-blue-900/20' : 'bg-blue-100/70'
+        className={`pointer-events-none absolute -left-40 top-20 h-80 w-80 rounded-full blur-[120px] ${
+          darkMode ? 'bg-indigo-600/15' : 'bg-blue-100/70'
+        }`}
+      />
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none absolute -right-40 top-[35%] h-96 w-96 rounded-full blur-[130px] ${
+          darkMode ? 'bg-teal-500/[0.07]' : 'bg-teal-100/40'
         }`}
       />
 
@@ -117,8 +122,8 @@ export default function About() {
           <span
             className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] ${
               darkMode
-                ? 'border-blue-400/30 bg-blue-400/10 text-blue-300'
-                : 'border-blue-200 bg-blue-50 text-blue-700'
+                ? 'border-indigo-400/25 bg-indigo-400/[0.08] text-indigo-200'
+                : 'border-indigo-200 bg-indigo-50 text-indigo-700'
             }`}
           >
             <Compass size={15} />
@@ -129,11 +134,12 @@ export default function About() {
             className={`mt-5 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl ${colors.heading}`}
           >
             Curious by nature.
-            <span className="block text-blue-600 dark:text-blue-400">
+            <span className="block bg-gradient-to-r from-indigo-500 via-blue-500 to-teal-400 bg-clip-text text-transparent">
               Driven to build.
             </span>
           </h2>
 
+          <div className="mt-5 h-1 w-16 rounded-full bg-gradient-to-r from-indigo-500 to-teal-400" />
           <p
             className={`mt-6 max-w-2xl text-base leading-8 sm:text-lg ${colors.paragraph}`}
           >
@@ -151,7 +157,11 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: reduceMotion ? 0 : 0.5 }}
-            className={`rounded-3xl border p-6 shadow-sm transition-colors duration-300 sm:p-8 lg:p-10 ${colors.card}`}
+            className={`rounded-3xl border p-6 shadow-xl transition-all duration-300 sm:p-8 lg:p-10 ${
+              darkMode
+                ? 'border-white/10 bg-slate-900/55 shadow-black/20 backdrop-blur-xl hover:border-indigo-400/25'
+                : 'border-slate-200 bg-white shadow-slate-200/60 hover:border-indigo-200'
+            }`}
           >
             <div className="flex items-center gap-3">
               <span
@@ -226,7 +236,7 @@ export default function About() {
               duration: reduceMotion ? 0 : 0.5,
               delay: 0.08,
             }}
-            className="rounded-3xl bg-slate-900 p-6 text-white shadow-xl shadow-slate-900/10 transition-colors duration-300 dark:bg-slate-900 sm:p-8 lg:p-9"
+            className="rounded-3xl border border-indigo-400/20 bg-gradient-to-br from-[#11111c] via-slate-900 to-[#0c1720] p-6 text-white shadow-xl shadow-indigo-950/30 transition-all duration-300 hover:border-indigo-400/35 sm:p-8 lg:p-9" 
           >
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-300">
               What I focus on
@@ -307,10 +317,10 @@ export default function About() {
                     duration: reduceMotion ? 0 : 0.45,
                     delay: reduceMotion ? 0 : index * 0.08,
                   }}
-                  className={`rounded-2xl border p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg ${
+                  className={`rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
                     darkMode
-                      ? 'border-slate-800 bg-slate-900 hover:shadow-black/20'
-                      : 'border-slate-200 bg-white hover:shadow-slate-900/5'
+                      ? 'border-white/10 bg-slate-900/55 shadow-black/10 backdrop-blur-xl hover:border-indigo-400/30 hover:shadow-indigo-950/30'
+                      : 'border-slate-200 bg-white hover:border-indigo-200 hover:shadow-indigo-100/60'
                   }`}
                 >
                   <div className="flex items-center justify-between">

@@ -7,7 +7,10 @@ import {
   Zap,
   Download,
   Sparkles,
+  CircuitBoard,
+  Cpu,
 } from 'lucide-react'
+import WireframeSphere from './WireframeSphere'
 
 const technologies = [
   'React',
@@ -18,10 +21,54 @@ const technologies = [
   'Tailwind CSS',
 ]
 
+const floatingTechnologies = [
+  {
+    name: 'React',
+    icon: Code2,
+    position: 'left-[5%] top-[22%] sm:left-[12%]',
+    color: 'text-cyan-400',
+    delay: 0,
+  },
+  {
+    name: 'Node.js',
+    icon: Code2,
+    position: 'right-[5%] top-[30%] sm:right-[12%]',
+    color: 'text-green-400',
+    delay: 0.5,
+  },
+  {
+    name: 'Electrical',
+    icon: Zap,
+    position: 'left-[5%] bottom-[24%] sm:left-[13%]',
+    color: 'text-amber-400',
+    delay: 1,
+  },
+  {
+    name: 'Circuits',
+    icon: CircuitBoard,
+    position: 'right-[5%] bottom-[21%] sm:right-[13%]',
+    color: 'text-blue-400',
+    delay: 1.5,
+  },
+  {
+    name: 'MongoDB',
+    icon: Code2,
+    position: 'left-[2%] top-[46%] sm:left-[7%]',
+    color: 'text-emerald-400',
+    delay: 0.8,
+  },
+  {
+    name: 'Python',
+    icon: Cpu,
+    position: 'right-[2%] top-[55%] sm:right-[7%]',
+    color: 'text-yellow-400',
+    delay: 1.2,
+  },
+]
+
 export default function Hero() {
   const reduceMotion = useReducedMotion()
 
-  // Read and follow the global theme
   const [darkMode, setDarkMode] = useState(() =>
     typeof document !== 'undefined'
       ? document.documentElement.classList.contains('dark')
@@ -53,269 +100,291 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className={`relative isolate min-h-[90vh] overflow-hidden px-5 pb-20 pt-32 transition-colors duration-300 sm:px-8 sm:pt-36 lg:flex lg:min-h-screen lg:items-center lg:pb-24 ${
-        darkMode ? 'bg-slate-950 text-white' : 'bg-white text-slate-900'
+      className={`relative isolate flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-5 pb-24 pt-28 text-center transition-colors duration-300 sm:min-h-screen sm:px-8 sm:pt-28 ${
+        darkMode
+          ? 'bg-[#09090f] text-white'
+          : 'bg-slate-50 text-slate-900'
       }`}
     >
-      {/* Background effects */}
+      {/* Background glow and subtle stars */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
       >
         <div
-          className={`absolute -right-40 -top-32 h-[30rem] w-[30rem] rounded-full blur-[120px] ${
-            darkMode ? 'bg-blue-600/20' : 'bg-blue-400/15'
+          className={`absolute left-1/2 top-[42%] h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px] sm:h-[38rem] sm:w-[38rem] ${
+            darkMode ? 'bg-indigo-600/10' : 'bg-blue-400/10'
           }`}
         />
 
         <div
-          className={`absolute -bottom-40 -left-32 h-[28rem] w-[28rem] rounded-full blur-[110px] ${
-            darkMode ? 'bg-indigo-600/15' : 'bg-indigo-400/10'
-          }`}
-        />
-
-        <div
-          className={`absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:48px_48px] ${
-            darkMode ? 'opacity-60' : 'opacity-40'
+          className={`absolute inset-0 ${
+            darkMode
+              ? 'bg-[radial-gradient(circle_at_20%_25%,rgba(59,130,246,0.12)_1px,transparent_2px),radial-gradient(circle_at_75%_20%,rgba(99,102,241,0.18)_1px,transparent_2px),radial-gradient(circle_at_85%_75%,rgba(59,130,246,0.16)_1px,transparent_2px)]'
+              : 'bg-[radial-gradient(circle_at_20%_25%,rgba(59,130,246,0.12)_1px,transparent_2px),radial-gradient(circle_at_75%_20%,rgba(99,102,241,0.12)_1px,transparent_2px)]'
           }`}
         />
       </div>
 
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-        {/* Hero introduction */}
-        <motion.div
-          initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduceMotion ? 0 : 0.7 }}
-        >
-          <div
-            className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold tracking-wide sm:text-sm ${
-              darkMode
-                ? 'border-blue-400/20 bg-blue-400/10 text-blue-200'
-                : 'border-blue-200 bg-blue-50 text-blue-800'
-            }`}
-          >
-            <Sparkles
-              size={15}
-              className={darkMode ? 'text-blue-300' : 'text-blue-600'}
-            />
-            Software Development × Electrical Engineering
-          </div>
+      {/* Animated wireframe sphere */}
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none absolute left-1/2 top-[44%] -z-10 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 sm:h-[620px] sm:w-[620px] lg:h-[760px] lg:w-[760px] ${
+          darkMode ? 'opacity-90' : 'opacity-30'
+        }`}
+      >
+        <WireframeSphere />
+      </div>
 
-          <p
-            className={`mt-8 text-sm font-semibold uppercase tracking-[0.22em] ${textSubtle}`}
-          >
-            Hello, welcome to my portfolio
-          </p>
+      {/* Floating technology badges */}
+      {floatingTechnologies.map((technology) => {
+        const Icon = technology.icon
 
-          <h1 className="mt-4 text-4xl font-black leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
-            I&apos;m Mohamud
-            <span className="mt-2 block bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-500 bg-clip-text text-transparent">
-              Abdullahi.
-            </span>
-          </h1>
-
-          <h2
-            className={`mt-6 text-xl font-bold sm:text-2xl ${
-              darkMode ? 'text-slate-200' : 'text-slate-700'
-            }`}
-          >
-            Software Developer
-            <span className="mx-2 text-blue-500">|</span>
-            Electrical Engineer in Training
-          </h2>
-
-          <p
-            className={`mt-6 max-w-2xl text-base leading-8 sm:text-lg ${textMuted}`}
-          >
-            I build web applications and explore practical engineering
-            solutions. I enjoy turning ideas into useful digital products
-            while developing my knowledge of electrical systems,
-            troubleshooting, and technical problem-solving.
-          </p>
-
-          {/* Main actions */}
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#projects"
-              className="group inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-950/20 transition duration-200 hover:-translate-y-0.5 hover:bg-blue-500"
-            >
-              Explore My Projects
-              <ArrowRight
-                size={17}
-                className="transition-transform group-hover:translate-x-1"
-              />
-            </a>
-
-            <a
-              href="#engineering"
-              className={`inline-flex items-center gap-2 rounded-xl border px-6 py-3.5 text-sm font-bold transition ${
-                darkMode
-                  ? 'border-white/15 bg-white/[0.04] text-white hover:border-amber-300/50 hover:bg-white/[0.08]'
-                  : 'border-slate-300 bg-white text-slate-800 hover:border-amber-400 hover:bg-amber-50'
-              }`}
-            >
-              <Zap size={17} className="text-amber-500" />
-              Engineering Lab
-            </a>
-          </div>
-
-          {/* CV and GitHub links */}
-          <div className="mt-5 flex flex-wrap gap-3">
-            <a
-              href="/Mohamud-Abdullahi-CV.pdf"
-              download
-              className={`inline-flex items-center gap-2 px-2 py-2 text-sm font-semibold transition hover:text-blue-500 ${textMuted}`}
-            >
-              <Download size={16} />
-              Download CV
-            </a>
-
-            <a
-              href="https://github.com/Mudu-abdullahi"
-              target="_blank"
-              rel="noreferrer"
-              className={`inline-flex items-center gap-2 px-2 py-2 text-sm font-semibold transition hover:text-blue-500 ${textMuted}`}
-            >
-              GitHub Profile
-              <ArrowRight size={16} />
-            </a>
-          </div>
-
-          {/* Technology tags */}
-          <div
-            className={`mt-10 border-t pt-6 ${
-              darkMode ? 'border-white/10' : 'border-slate-200'
-            }`}
-          >
-            <p
-              className={`text-xs font-bold uppercase tracking-[0.18em] ${textSubtle}`}
-            >
-              Technologies I work with
-            </p>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {technologies.map((technology) => (
-                <span
-                  key={technology}
-                  className={`rounded-lg border px-3 py-2 text-xs font-medium transition hover:border-blue-400 hover:text-blue-500 ${
-                    darkMode
-                      ? 'border-white/10 bg-white/[0.04] text-slate-300 hover:text-blue-200'
-                      : 'border-slate-200 bg-slate-50 text-slate-700'
-                  }`}
-                >
-                  {technology}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Profile image */}
-        <motion.div
-          initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: reduceMotion ? 0 : 0.8, delay: 0.1 }}
-          className="relative mx-auto w-full max-w-md lg:max-w-none"
-        >
-          <div
+        return (
+          <motion.div
+            key={technology.name}
             aria-hidden="true"
-            className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-blue-500/20 via-indigo-500/10 to-amber-400/20 blur-2xl"
-          />
-
-          <div
-            className={`relative overflow-hidden rounded-[2rem] border p-3 shadow-2xl transition-colors duration-300 ${
+            initial={{
+              opacity: 0,
+              y: reduceMotion ? 0 : 12,
+            }}
+            animate={{
+              opacity: darkMode ? 1 : 0.8,
+              y: reduceMotion ? 0 : [0, -8, 0],
+            }}
+            transition={{
+              opacity: { duration: 0.7 },
+              y: reduceMotion
+                ? { duration: 0 }
+                : {
+                    duration: 4,
+                    delay: technology.delay,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  },
+            }}
+            className={`absolute ${technology.position} hidden items-center gap-3 rounded-2xl border px-4 py-3 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 sm:flex ${
               darkMode
-                ? 'border-white/10 bg-slate-900 shadow-black/30'
-                : 'border-slate-200 bg-white shadow-slate-300/40'
+                ? 'border-white/10 bg-slate-900/65 shadow-blue-950/20 hover:border-indigo-400/40 hover:bg-slate-900/90'
+                : 'border-slate-200 bg-white/85 shadow-slate-300/30 hover:border-indigo-300'
             }`}
           >
-            <div
-              className={`relative overflow-hidden rounded-[1.5rem] ${
-                darkMode ? 'bg-slate-800' : 'bg-slate-100'
+            <Icon size={16} className={technology.color} />
+            <span
+              className={`text-xs font-semibold ${
+                darkMode ? 'text-slate-200' : 'text-slate-700'
               }`}
             >
-              <img
-                src="/images/mohamud-profile.jpg"
-                alt="Mohamud Abdullahi"
-                loading="eager"
-                fetchPriority="high"
-                className="aspect-[4/5] w-full object-cover object-center"
-                onError={(event) => {
-                  event.currentTarget.style.display = 'none'
-                }}
-              />
+              {technology.name}
+            </span>
+          </motion.div>
+        )
+      })}
 
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+      {/* Main hero content */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: reduceMotion ? 0 : 24,
+        }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: reduceMotion ? 0 : 0.8,
+          ease: 'easeOut',
+        }}
+        className="relative z-10 mx-auto w-full max-w-5xl"
+      >
+        {/* Introduction badge */}
+        <div
+          className={`mx-auto inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold tracking-wide sm:text-sm ${
+            darkMode
+              ? 'border-indigo-400/20 bg-indigo-400/[0.08] text-indigo-300'
+              : 'border-indigo-200 bg-indigo-50 text-indigo-700'
+          }`}
+        >
+          <Sparkles size={15} />
+          Software Development × Electrical Engineering
+        </div>
 
-              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300">
-                  Building • Learning • Engineering
-                </p>
-                <p className="mt-2 text-xl font-extrabold text-white sm:text-2xl">
-                  Technology with purpose.
-                </p>
-              </div>
-            </div>
+        <p
+          className={`mt-8 text-sm font-medium sm:text-base ${
+            darkMode ? 'text-indigo-300' : 'text-indigo-600'
+          }`}
+        >
+          Hello, welcome to my portfolio 👋
+        </p>
 
-            {/* Software focus card */}
-            <div
-              className={`absolute -left-3 top-10 flex items-center gap-3 rounded-2xl border p-3 shadow-xl backdrop-blur sm:-left-6 sm:p-4 ${
+        {/* Main heading */}
+        <h1 className="mt-5 text-4xl font-black leading-[1.12] tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
+          <span className="block">
+            I&apos;m{' '}
+            <span
+              className={`bg-gradient-to-r bg-clip-text text-transparent ${
                 darkMode
-                  ? 'border-white/10 bg-slate-900/95'
-                  : 'border-slate-200 bg-white/95'
+                  ? 'from-indigo-400 via-blue-500 to-teal-400'
+                  : 'from-indigo-600 via-blue-600 to-teal-600'
               }`}
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/15 text-blue-500">
-                <Code2 size={22} />
-              </span>
+              Mohamud Abdullahi
+            </span>
+          </span>
+        </h1>
 
-              <div>
-                <p className={`text-xs ${textSubtle}`}>Focus area</p>
-                <p
-                  className={`text-sm font-bold ${
-                    darkMode ? 'text-white' : 'text-slate-900'
-                  }`}
-                >
-                  Software
-                </p>
-              </div>
-            </div>
+        {/* Professional title */}
+        <h2
+          className={`mt-6 text-xl font-bold sm:text-2xl lg:text-3xl ${
+            darkMode ? 'text-teal-400' : 'text-teal-700'
+          }`}
+        >
+          Software Developer
+          <span className="mx-2 text-indigo-400">|</span>
+          Electrical Engineer in Training
+        </h2>
 
-            {/* Electrical engineering focus card */}
-            <div
-              className={`absolute -right-3 bottom-24 flex items-center gap-3 rounded-2xl border p-3 shadow-xl backdrop-blur sm:-right-6 sm:p-4 ${
-                darkMode
-                  ? 'border-white/10 bg-slate-900/95'
-                  : 'border-slate-200 bg-white/95'
-              }`}
-            >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-400/15 text-amber-500">
-                <Zap size={22} />
-              </span>
+        {/* Description */}
+        <p
+          className={`mx-auto mt-6 max-w-2xl text-base leading-8 sm:text-lg ${
+            darkMode ? 'text-slate-400' : 'text-slate-600'
+          }`}
+        >
+          I build web applications and explore practical engineering
+          solutions. I combine technology, creativity, and problem-solving
+          to develop useful digital products and electrical systems.
+        </p>
 
-              <div>
-                <p className={`text-xs ${textSubtle}`}>Focus area</p>
-                <p
-                  className={`text-sm font-bold ${
-                    darkMode ? 'text-white' : 'text-slate-900'
-                  }`}
-                >
-                  Electrical
-                </p>
-              </div>
-            </div>
-          </div>
+        {/* Primary actions */}
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="#projects"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-violet-600 via-indigo-600 to-blue-600 px-7 py-4 text-sm font-bold text-white shadow-[0_0_25px_rgba(99,102,241,0.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(99,102,241,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-blue-500 via-violet-500 to-indigo-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <span className="relative z-10">Explore My Projects</span>
+            <ArrowRight
+              size={17}
+              className="relative z-10 transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </a>
 
           <a
-            href="#about"
-            className={`mx-auto mt-8 flex w-fit items-center gap-2 text-sm font-medium transition hover:text-blue-500 ${textSubtle}`}
+            href="#contact"
+            className={`group inline-flex items-center gap-2 rounded-xl border px-7 py-4 text-sm font-bold transition-all duration-300 hover:-translate-y-1 ${
+              darkMode
+                ? 'border-indigo-400/30 bg-white/[0.03] text-white shadow-[0_0_15px_rgba(99,102,241,0.05)] hover:border-indigo-400/70 hover:bg-indigo-500/10 hover:shadow-[0_0_25px_rgba(99,102,241,0.15)]'
+                : 'border-slate-300 bg-white text-slate-800 hover:border-indigo-400 hover:bg-indigo-50 hover:shadow-lg hover:shadow-indigo-500/10'
+            }`}
           >
-            Discover my journey
-            <ArrowDown size={16} />
+            Contact Me
+            <ArrowRight
+              size={16}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
           </a>
+        </div>
+
+        {/* Availability status */}
+        <div className="mt-7 flex justify-center">
+          <div
+            className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium sm:text-sm ${
+              darkMode
+                ? 'border-emerald-500/25 bg-emerald-500/[0.07] text-emerald-400'
+                : 'border-emerald-200 bg-emerald-50 text-emerald-700'
+            }`}
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            Open to opportunities
+          </div>
+        </div>
+
+        {/* CV and GitHub links */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+          <a
+            href="/Mohamud-Abdullahi-CV.pdf"
+            download
+            className={`inline-flex items-center gap-2 text-sm font-semibold transition hover:text-indigo-400 ${
+              textMuted
+            }`}
+          >
+            <Download size={16} />
+            Download CV
+          </a>
+
+          <a
+            href="https://github.com/Mudu-abdullahi"
+            target="_blank"
+            rel="noreferrer"
+            className={`inline-flex items-center gap-2 text-sm font-semibold transition hover:text-indigo-400 ${
+              textMuted
+            }`}
+          >
+            <Code2 size={16} />
+            GitHub Profile
+            <ArrowRight size={14} />
+          </a>
+        </div>
+
+        {/* Technology tags */}
+        <div
+          className={`mx-auto mt-10 max-w-3xl border-t pt-6 ${
+            darkMode ? 'border-white/10' : 'border-slate-200'
+          }`}
+        >
+          <p
+            className={`text-xs font-bold uppercase tracking-[0.18em] ${textSubtle}`}
+          >
+            Technologies I work with
+          </p>
+
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {technologies.map((technology) => (
+              <span
+                key={technology}
+                className={`rounded-lg border px-3 py-2 text-xs font-medium transition duration-200 hover:-translate-y-0.5 hover:border-indigo-400 hover:text-indigo-400 ${
+                  darkMode
+                    ? 'border-white/10 bg-white/[0.04] text-slate-300'
+                    : 'border-slate-200 bg-white text-slate-700'
+                }`}
+              >
+                {technology}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.a
+        href="#about"
+        aria-label="Scroll down to learn about me"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: reduceMotion ? 0 : 0.8,
+          delay: 0.6,
+        }}
+        className={`absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 transition hover:text-indigo-400 sm:bottom-6 ${
+          textSubtle
+        }`}
+      >
+        <motion.div
+          animate={reduceMotion ? {} : { y: [0, 5, 0] }}
+          transition={{
+            duration: 1.8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="flex h-9 w-5 items-start justify-center rounded-full border border-current p-1"
+        >
+          <span className="h-2 w-1 rounded-full bg-current" />
         </motion.div>
-      </div>
+
+        <span className="text-[10px] font-semibold uppercase tracking-[0.2em]">
+          Scroll down
+        </span>
+      </motion.a>
     </section>
   )
 }
